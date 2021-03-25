@@ -1,0 +1,8 @@
+{
+  "name": "ts-bff",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/xiaoyongchen/ts-bff.git",
+  "author": "陈小勇 <xiaoyong.chen@zhangmen.com>",
+  "license": "MIT"
+}
