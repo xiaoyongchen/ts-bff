@@ -5,7 +5,6 @@ const { loadControllers, scopePerRequest } = require('awilix-koa');
 
 const app = new Koa();
 
-
 // 容器
 const container = createContainer();
 
