@@ -1,9 +1,19 @@
 import * as Koa from 'koa';
+import { join } from 'path';
+import *as render from 'koa-swig';
+import *as co from 'co';
 // 注入服务，设置一些单例之类的。
 const { createContainer, Lifetime } = require('awilix');
 const { loadControllers, scopePerRequest } = require('awilix-koa');
 
 const app = new Koa();
+
+app.context.render = co.wrap(render({
+  root: join(__dirname, 'views'),
+  cache: 'memory', // disable, set to false
+  ext: 'html',
+  writeBody: false,
+}));
 
 // 容器
 const container = createContainer();
@@ -27,3 +37,4 @@ app.use(loadControllers(__dirname+"/routers/*.ts"));
 app.listen(3000, () => {
   console.log('BFF启动成功');
 });
+

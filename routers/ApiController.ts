@@ -1,6 +1,7 @@
 import { GET, route } from 'awilix-koa';
 import * as Router from 'koa-router';
 import { IApi } from '../interface';
+import { Contenxt } from '../interface/IKoa';
 
 @route("/api")
 class ApiController {
@@ -10,7 +11,7 @@ class ApiController {
   }
   @route("/list")
   @GET()
-  async actionList(ctx: Router.IRouterContext, next: () => Promise<any>): Promise<any> {
+  async actionList(ctx: Contenxt, next: () => Promise<any>): Promise<any> {
     const data = await this.apiService.getInfo();
     ctx.body = {
       data,

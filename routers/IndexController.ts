@@ -1,14 +1,12 @@
 import { GET, route } from 'awilix-koa';
-import * as Router from 'koa-router';
+import { Contenxt } from '../interface/IKoa';
 
 @route("/")
 class IndexController {
   @route('/')
   @GET()
-  async actionList(ctx: Router.IRouterContext, next: () => Promise<any>): Promise<any> {
-    ctx.body = {
-      data: '入口',
-    }
+  async actionList(ctx: Contenxt, next: () => Promise<any>): Promise<any> {
+    ctx.body = await ctx.render('index.html');
   }
 }
 
