@@ -9,7 +9,7 @@ class ApiController {
   @route("/list")
   @GET()
   async actionList(ctx, next: () => Promise<any>): Promise<any> {
-    const data = this.apiService.getInfo();
+    const data = await this.apiService.getInfo();
     ctx.body = {
       data,
     }
