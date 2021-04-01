@@ -1,7 +1,8 @@
 import * as Koa from 'koa';
 import { join } from 'path';
-import *as render from 'koa-swig';
-import *as co from 'co';
+import * as render from 'koa-swig';
+import * as co from 'co';
+import * as serve from 'koa-static';
 // 注入服务，设置一些单例之类的。
 const { createContainer, Lifetime } = require('awilix');
 const { loadControllers, scopePerRequest } = require('awilix-koa');
@@ -33,6 +34,9 @@ app.use(scopePerRequest(container));
 
 // 3.控制器没有运行,装载控制器
 app.use(loadControllers(__dirname+"/routers/*.ts"));
+
+// 加载静态资源
+app.use(serve(__dirname + '/assets'));
 
 app.listen(3000, () => {
   console.log('BFF启动成功');
