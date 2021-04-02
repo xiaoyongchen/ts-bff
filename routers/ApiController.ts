@@ -1,5 +1,4 @@
 import { GET, route } from 'awilix-koa';
-import * as Router from 'koa-router';
 import { IApi } from '../interface';
 import { Contenxt } from '../interface/IKoa';
 

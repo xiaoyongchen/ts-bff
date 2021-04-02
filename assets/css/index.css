@@ -1,6 +1,0 @@
-:root {
-    --globalColor: greenyellow;
-}
-h1 {
-    color: var(--globalColor);
-}
