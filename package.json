@@ -6,7 +6,8 @@
   "author": "陈小勇 <xiaoyong.chen@zhangmen.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only app.ts"
+    "dev": "ts-node-dev --respawn --transpile-only app.ts",
+    "example:router": "ts-node-dev --respawn --transpile-only example/router.ts"
   },
   "dependencies": {
     "@koa/router": "^10.0.0",

@@ -34,13 +34,14 @@ container.loadModules([__dirname + '/services/*.ts'], {
 app.use(scopePerRequest(container));
 
 // handle fallback for HTML5 history API
-// app.use(historyApiFallback({ whiteList: ['/api'], index: '/' }));
+app.use(historyApiFallback({ whiteList: ['/api'], index: '/' }));
 
 // 3.控制器没有运行,装载控制器
 app.use(loadControllers(__dirname+"/routers/*.ts"));
+app.use(historyApiFallback({ whiteList: ['/api'], index: '/' }));
 
 // 加载静态资源
-// app.use(serve(__dirname + '/assets'));
+app.use(serve(__dirname + '/assets'));
 
 app.listen(3000, () => {
   console.log('BFF启动成功');
