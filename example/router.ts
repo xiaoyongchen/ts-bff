@@ -1,7 +1,10 @@
 import * as Koa from 'koa';
 import * as Router from '@koa/router';
+import logMiddleware from '../middleware/logMiddleware';
+import mid2 from '../middleware/mid2';
 
 const app = new Koa();
+
 const router = new Router();
 // 路由分组
 const user = new Router({
@@ -20,11 +23,22 @@ router.get('/list/:id', async content => {
   }
 });
 
+
 // 嵌套
 const next = new Router();
 next.use('/next', router.routes());
 user.get('/', async content => {
   content.body = 'group'
+});
+
+// 自定义路由, 可以放到全局或者局部, 洋葱模型
+user.get('/router', logMiddleware(), mid2(), async content => {
+  content.body = '自定义中间件';
+});
+
+// 路由重定向, 必须这个路由存在的
+router.get('/router/redirect', async content => {
+  content.redirect('/list');
 });
 
 // next 必须要执行，否则不往下执行
@@ -40,6 +54,11 @@ router.get('/detail', async (content, next) => {
     time: content.time,
   }
 });
+
+// 全局中间件
+app.use(logMiddleware());
+
+app.use(user.routes()).use(user.allowedMethods());
 
 app.use(next.routes()).use(next.allowedMethods());
 
