@@ -3,6 +3,7 @@
     "transpileOnly": true
   },
   "compilerOptions": {
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true
   }
 }
